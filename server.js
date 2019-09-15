@@ -1,8 +1,10 @@
 const http = require('http');
+const url = require('url');
 
 function start() {
     function onRequest(request, response) {
-        console.log('Request recieved.');
+        let pathname = url.parse(request.url);
+        console.log(`Request for ${pathname} recieved.`);
         response.writeHead(200, {'Content-Type': 'text/plain'});
         response.write('Hello World');
         response.end();
@@ -13,6 +15,18 @@ function start() {
 }
 
 exports.start = start;
+
+// function start() {
+    // function onRequest(request, response) {
+        // console.log('Request recieved.');
+        // response.writeHead(200, {'Content-Type': 'text/plain'});
+        // response.write('Hello World');
+        // response.end();
+    // }
+// 
+    // http.createServer(onRequest).listen(8888);
+    // console.log('Server has started.');
+// }
 
 // function onRequest(request, response) {
     // console.log('Request recieved.');
