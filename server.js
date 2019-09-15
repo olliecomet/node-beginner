@@ -1,15 +1,29 @@
 const http = require('http');
 
-function onRequest(request, response) {
-    console.log('Request recieved.');
-    response.writeHead(200, {'content-type': 'text/plain'});
-    response.write('Hello World');
-    response.end();
+function start() {
+    function onRequest(request, response) {
+        console.log('Request recieved.');
+        response.writeHead(200, {'Content-Type': 'text/plain'});
+        response.write('Hello World');
+        response.end();
+    }
+
+    http.createServer(onRequest).listen(8888);
+    console.log('Server has started.');
 }
 
-http.createServer(onRequest).listen(8888);
+exports.start = start;
 
-console.log('Server has started.');
+// function onRequest(request, response) {
+    // console.log('Request recieved.');
+    // response.writeHead(200, {'content-type': 'text/plain'});
+    // response.write('Hello World');
+    // response.end();
+// }
+// 
+// http.createServer(onRequest).listen(8888);
+// 
+// console.log('Server has started.');
 
 // http.createServer(function(request, response) {
     // response.writeHead(200, {'content-type': 'text/plain'});
